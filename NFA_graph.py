@@ -89,7 +89,7 @@ for u, v, data in G.edges(data=True):
         edgelist=[(u, v)],
         connectionstyle=f'arc3,rad={rad}',
         arrows=True,
-        arrowstyle='-|>',
+        arrowstyle='->',
         arrowsize=20,
         edge_color='black'
     )
