@@ -1,32 +1,41 @@
 import json
 
-# Load the DFA
-with open('output.json') as file:
-    dfa = json.load(file)
+# Load the DFA from a JSON file
+try:
+    with open('output.json') as file:
+        dfa = json.load(file)
+except FileNotFoundError:
+    print("❌ Error: 'output.json' file not found.")
+    exit(1)
 
-# DFA ka structure
-transitions = dfa["t_func"]
-start_state = dfa["start"]
-final_states = dfa["final"]
+# Extract DFA components
+transitions = dfa.get("t_func", [])
+start_state = dfa.get("start")
+final_states = dfa.get("final", [])
 
-# Function to simulate DFA
+# DFA Simulation Function
 def simulate_dfa(input_string):
     current_state = (start_state,)
 
     for symbol in input_string:
-        found = False
+        transition_found = False
         for trans in transitions:
             if list(current_state) == trans[0] and symbol == trans[1]:
                 current_state = tuple(trans[2])
-                found = True
+                transition_found = True
                 break
-        if not found:
+        if not transition_found:
+            print(f"⚠️ No transition found for symbol '{symbol}' from state {current_state}.")
             return False
+
     return list(current_state) in final_states
 
-# Example
-test_string = input("Enter a string to test: ")
+# User input
+print("🔄 DFA Simulator 🔄")
+test_string = input("Enter a string using the DFA's alphabet: ").strip()
+
+# Run simulation
 if simulate_dfa(test_string):
-    print("String accepted by DFA!")
+    print("✅ String ACCEPTED by the DFA!")
 else:
-    print("String rejected by DFA.")
+    print("❌ String REJECTED by the DFA.")
