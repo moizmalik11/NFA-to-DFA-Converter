@@ -26,12 +26,18 @@ for in_state in q:
         dest = []
         final_dest = []
 
-        for n_state in in_state:
-            key = (n_state, symbol)
-            if key in nfa_transitions:
-                for target in nfa_transitions[key]:
-                    if target not in final_dest:
-                        final_dest.append(target)
+        # for n_state in in_state:
+        #     key = (n_state, symbol)
+        #     if key in nfa_transitions:
+        #         for target in nfa_transitions[key]:
+        #             if target not in final_dest:
+        #                 final_dest.append(target)
+                        
+        for state in in_state:
+            targets = nfa_transitions.get((state, symbol), [])
+            for next_state in targets:
+                if next_state not in final_dest:
+                    final_dest.append(next_state)
 
         final_dest.sort()  # Optional: for consistent state names
 
