@@ -60,3 +60,6 @@ plt.axis('off')
 plt.tight_layout()
 plt.show()
 console.log("NFA visualization complete.")
+
+# This code visualizes a Non-deterministic Finite Automaton (NFA) using NetworkX and Matplotlib.
+# It creates a directed graph with nodes representing states and edges representing transitions.
