@@ -19,22 +19,23 @@ dfa_transitions = {}
 
 for transition in data["t_func"]:
     nfa_transitions[(transition[0], transition[1])] = transition[2]
-    
-
 
 # Subset construction to convert NFA to DFA
 for in_state in q:
-    print("Current state:", in_state)
     for symbol in dfa_letters:
-        print("Current symbol:", symbol)
         dest = []
-        final_dest = []   
+        final_dest = []
+
+        # for n_state in in_state:
+        #     key = (n_state, symbol)
+        #     if key in nfa_transitions:
+        #         for target in nfa_transitions[key]:
+        #             if target not in final_dest:
+        #                 final_dest.append(target)
+                        
         for state in in_state:
-            print("State:", state)
             targets = nfa_transitions.get((state, symbol), [])
-            print("Targets:", targets)
             for next_state in targets:
-                print("Next state:", next_state)
                 if next_state not in final_dest:
                     final_dest.append(next_state)
 
