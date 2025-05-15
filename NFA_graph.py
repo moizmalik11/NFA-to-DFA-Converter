@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import json
 
 # Load NFA from input.json
-with open("input.json", "r") as file:
+with open("input4.json", "r") as file:
     nfa = json.load(file)
 
 # Convert transitions to edge list with combined labels

@@ -2,7 +2,7 @@ import json
 from collections import OrderedDict
 
 # Load input NFA
-with open('input.json') as file:
+with open('input4.json') as file:
     data = json.load(file)
 
 dfa_letters = data["letters"]
