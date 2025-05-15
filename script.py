@@ -23,16 +23,8 @@ for transition in data["t_func"]:
 # Subset construction to convert NFA to DFA
 for in_state in q:
     for symbol in dfa_letters:
-        dest = []
         final_dest = []
 
-        # for n_state in in_state:
-        #     key = (n_state, symbol)
-        #     if key in nfa_transitions:
-        #         for target in nfa_transitions[key]:
-        #             if target not in final_dest:
-        #                 final_dest.append(target)
-                        
         for state in in_state:
             targets = nfa_transitions.get((state, symbol), [])
             for next_state in targets:
@@ -41,15 +33,15 @@ for in_state in q:
 
         final_dest.sort()  # Optional: for consistent state names
 
-        if final_dest:
-            dfa_transitions[(in_state, symbol)] = final_dest
-            next_state = tuple(final_dest)
-            if next_state not in q:
-                q.append(next_state)
+        # ✅ Always record the transition (even if final_dest is empty)
+        dfa_transitions[(in_state, symbol)] = final_dest
+        next_state = tuple(final_dest)
+        if next_state not in q:
+            q.append(next_state)
 
 # Build DFA transition function list
 for key, value in dfa_transitions.items():
-    dfa_t_func.append([list(key[0]), key[1], value])
+    dfa_t_func.append([list(key[0]) if len(key[0]) == 1 else list(key[0]), key[1], value])
 
 # Identify DFA final states
 dfa_final = []
