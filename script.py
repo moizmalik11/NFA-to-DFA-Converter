@@ -11,9 +11,9 @@ dfa_t_func = []
 dfa_final = []
 q = []
 
-q.append((dfa_start,))  # Initial DFA state as a tuple
+q.append((dfa_start,))  # Initial DFA state 
 
-# Build NFA transition dictionary
+#  NFA transition dict
 nfa_transitions = {}
 dfa_transitions = {}
 
@@ -31,9 +31,9 @@ for in_state in q:
                 if next_state not in final_dest:
                     final_dest.append(next_state)
 
-        final_dest.sort()  # Optional: for consistent state names
+        final_dest.sort()  # for consistent state names
 
-        # ✅ Always record the transition (even if final_dest is empty)
+        #  record the transition 
         dfa_transitions[(in_state, symbol)] = final_dest
         next_state = tuple(final_dest)
         if next_state not in q:
@@ -43,7 +43,7 @@ for in_state in q:
 for key, value in dfa_transitions.items():
     dfa_t_func.append([list(key[0]) if len(key[0]) == 1 else list(key[0]), key[1], value])
 
-# Identify DFA final states
+# Identify DFA final 
 dfa_final = []
 for q_state in q:
     for f_state in data["final"]:
@@ -58,6 +58,6 @@ dfa["t_func"] = dfa_t_func
 dfa["start"] = dfa_start
 dfa["final"] = dfa_final
 
-# Write to output file
+
 with open('output.json', 'w') as output_file:
     json.dump(dfa, output_file, indent=2)
