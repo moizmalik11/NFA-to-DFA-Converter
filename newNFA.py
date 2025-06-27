@@ -77,9 +77,7 @@ for u, v, label in edges:
 
 # Define positions manually (optional)
 pos = {
-    'q0': (0, 0),
-    'q1': (1.5, 0),
-    'q2': (3, 0)
+    
 }
 
 # Draw the graph
