@@ -43,7 +43,7 @@ start = pos[nfa["start"]]
 plt.annotate("", xy=start, xytext=(start[0] - 1, start[1] + 0.5),
              arrowprops=dict(arrowstyle="->", lw=2))
 
-plt.title("Dynamic NFA Visualization from input.json")
+plt.title("Dynamic NFA Visualization ")
 plt.axis('off')
 plt.tight_layout()
 plt.show()
