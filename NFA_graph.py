@@ -8,13 +8,7 @@ with open("input4.json", "r") as file:
 
 # Convert transitions to edge list with combined labels
 edge_dict = {}
-for from_state, symbol, to_states in nfa["t_func"]:
-    for to_state in to_states:
-        key = (from_state, to_state)
-        if key in edge_dict:
-            edge_dict[key].append(symbol)
-        else:
-            edge_dict[key] = [symbol]
+
 
 # Create MultiDiGraph
 G = nx.MultiDiGraph()
